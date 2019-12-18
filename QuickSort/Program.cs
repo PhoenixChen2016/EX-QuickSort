@@ -94,7 +94,7 @@ namespace QuickSort
 
 		static void Main(string[] args)
 		{
-			var a = Enumerable.Range(0, 1000_0000)
+			var a = Enumerable.Range(0, 1000_00000)
 				.Select(n => random.Next())
 				.ToArray();
 
@@ -102,7 +102,7 @@ namespace QuickSort
 			//QuickSort(a, 0, a.Length - 1);
 
 			var tasks = new List<Task>();
-			for (var i = 0; i < 10; i++)
+			for (var i = 0; i < 100; i++)
 			{
 				var index = i;
 				tasks.Add(Task.Run(() => QuickSort(a, index * 1000000, index * 1000000 + 1000000 - 1)));
@@ -111,7 +111,7 @@ namespace QuickSort
 			Task.WaitAll(tasks.ToArray());
 
 			var numberGroups = new List<List<int>>();
-			for (var i = 0; i < 10; i++)
+			for (var i = 0; i < 100; i++)
 				numberGroups.Add(a.Skip(i * 1000000).Take(1000000).ToList());
 
 			var result = Merge(numberGroups);
